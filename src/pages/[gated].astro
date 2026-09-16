@@ -1,0 +1,21 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import Manifesto from "../components/pages/Manifesto.astro";
+import Support from "../components/pages/Support.astro";
+import { flags } from "../flags.ts";
+
+export function getStaticPaths() {
+  return [
+    ...(flags.manifesto ? [{ params: { gated: "manifesto" } }] : []),
+    ...(flags.support ? [{ params: { gated: "support" } }] : []),
+  ];
+}
+const { gated } = Astro.params;
+const meta =
+  gated === "manifesto"
+    ? { title: "Manifesto — madrileño", description: "Why madrileño exists and the choices behind it." }
+    : { title: "Support — madrileño", description: "Paid support and consulting for madrileño, from Iterators." };
+---
+<SiteLayout title={meta.title} description={meta.description}>
+  {gated === "manifesto" ? <Manifesto /> : <Support />}
+</SiteLayout>
