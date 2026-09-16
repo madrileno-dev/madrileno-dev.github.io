@@ -1,0 +1,13 @@
+/docs/
+node_modules/
+dist/
+.astro/
+.sources/
+.env
+src/content/docs/*
+!src/content/docs/.gitkeep
+src/generated/*
+!src/generated/.gitkeep
+public/brand/
+public/favicon.svg
+src/assets/brand/
