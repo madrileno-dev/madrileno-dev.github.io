@@ -6,6 +6,7 @@
   --m-accent: #b5122b;
   --m-accent-soft: #f3d9dd;
   --m-line: #e2dcd2;
+  --m-line-strong: #cfc9be;
   --m-font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --m-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --m-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -19,5 +20,6 @@
   --m-accent: #e0304a;
   --m-accent-soft: #3a1e24;
   --m-line: #35353d;
+  --m-line-strong: #45454d;
   color-scheme: dark;
 }

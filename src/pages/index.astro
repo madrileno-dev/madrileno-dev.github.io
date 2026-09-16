@@ -5,22 +5,23 @@ import FeatureGrid from "../components/FeatureGrid.astro";
 import { links } from "../site.ts";
 import { flags } from "../flags.ts";
 const description =
-  "madrileño is a production Scala 3 backend template. Auth, scheduled jobs, an outbox, feature flags and OpenTelemetry already wired. One script makes it your project.";
+  "madrileño is an AI-first Scala 3 backend template: wired for coding assistants, with auth, scheduled jobs, an outbox and feature flags already in place. One script makes it your project.";
 ---
 <SiteLayout title="madrileño — a production Scala 3 backend, yours from the first commit" description={description}>
   <section class="m-section m-section--flush hero">
     <div class="m-container hero__grid">
       <div class="hero__copy">
+        <p class="m-eyebrow">AI-first Scala 3 backend template</p>
         <h1>A production backend. Yours from the first commit.</h1>
-        <p class="hero__lede">Scala 3 underneath, so the compiler catches what tests would miss. Auth, background jobs, durable events and feature flags are already in place. One script, and the code is yours to change.</p>
+        <p class="hero__lede">Wired for coding assistants from day one: a live compile-and-test loop and docs the assistant reads as its knowledge base. Scala 3 underneath, so the compiler catches what tests would miss. Auth, background jobs, durable events and feature flags are already in place, and one script makes the code yours.</p>
         <div class="m-actions">
           <a class="m-button m-button--primary" href="/docs/getting-started/">Get started</a>
           <a class="m-button" href={links.repo} rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="hero__code">
-        <pre><code>git clone {links.repo} my-project
-cd my-project
+        <pre><code>git clone {links.repo}
+cd madrileno
 ./scripts/init-project.scala my-project
 docker compose up -d
 sbt "~reStart"</code></pre>
@@ -121,7 +122,7 @@ sbt "~reStart"</code></pre>
   .hero__grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
   .hero__lede { font-size: 1.2rem; max-width: 36rem; }
   .hero__code { margin-top: 3rem; }
-  .hero__code pre { margin: 0 0 0.75rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .hero__code pre { margin: 0 0 0.75rem; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
   .section-lede { max-width: 40rem; margin-bottom: 2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
   .principles { padding-left: 1.25rem; max-width: 46rem; margin: 0 0 1.5rem; }

@@ -31,10 +31,6 @@ export default defineConfig({
       lastUpdated: false,
       expressiveCode: {
         shiki: { langAlias: { hocon: "properties" } },
-        defaultProps: {
-          wrap: false,
-          overridesByLang: { "scala,bash,sh,json,sql,http,hocon,properties,ts,typescript,js,yaml,yml,md": { wrap: true } },
-        },
       },
       plugins: [starlightLinksValidator({ errorOnLocalLinks: false })],
     }),

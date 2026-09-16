@@ -26,7 +26,7 @@
   --sl-color-gray-6: #2a2a31;
   --sl-color-black: var(--m-bg);
 }
-:root { --sl-content-width: 50rem; }
+:root { --sl-color-bg-nav: var(--m-bg); --sl-color-hairline-shade: var(--m-line); }
 .site-title, .sl-markdown-content h1, .sl-markdown-content h2, .sl-markdown-content h3 {
   font-family: var(--m-font-display);
   font-weight: 600;
