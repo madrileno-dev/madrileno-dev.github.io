@@ -101,3 +101,43 @@ describe("rewriteLinks", () => {
     expect(() => rewriteLinks("[x](missing.md)", fromDoc)).toThrow("unresolvable link: missing.md");
   });
 });
+
+import { readFileSync } from "node:fs";
+import { parseDocsIndex, buildSidebar } from "./transform.ts";
+
+const index = readFileSync(new URL("./fixtures/docs-index.md", import.meta.url), "utf8");
+
+describe("parseDocsIndex", () => {
+  const groups = parseDocsIndex(index);
+
+  it("yields one group per ## heading, in order", () => {
+    expect(groups.map((g) => g.label)).toEqual([
+      "Start here", "Core", "Stack", "Tooling", "Conventions", "Operations", "Frontend",
+    ]);
+  });
+
+  it("maps ../README.md to getting-started and keeps bullet order", () => {
+    expect(groups[0].entries.map((e) => e.name)).toEqual(["getting-started", "dev-workflow", "adding-a-module"]);
+  });
+
+  it("takes the description after the em dash", () => {
+    const core = groups.find((g) => g.label === "Core")!;
+    expect(core.entries[0]).toEqual({ name: "principles", description: "the five principles the codebase is built around." });
+  });
+
+  it("drops headings with no entries and ignores paragraphs", () => {
+    const md = "# Documentation\n\nIntro.\n\n## Empty\n\nJust text.\n\n## Real\n\n- [`a.md`](a.md) — A.\n";
+    expect(parseDocsIndex(md)).toEqual([{ label: "Real", entries: [{ name: "a", description: "A." }] }]);
+  });
+});
+
+describe("buildSidebar", () => {
+  it("labels items by page title and fails on an unrendered page", () => {
+    const groups = [{ label: "Core", entries: [{ name: "principles" }, { name: "architecture" }] }];
+    const titles = new Map([["principles", "Principles"], ["architecture", "Architecture"]]);
+    expect(buildSidebar(groups, titles)).toEqual([
+      { label: "Core", items: [{ label: "Principles", slug: "docs/principles" }, { label: "Architecture", slug: "docs/architecture" }] },
+    ]);
+    expect(() => buildSidebar(groups, new Map([["principles", "P"]]))).toThrow("index links unrendered page: architecture");
+  });
+});

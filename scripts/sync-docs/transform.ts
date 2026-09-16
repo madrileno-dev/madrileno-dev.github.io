@@ -98,3 +98,41 @@ export function rewriteLinks(markdown: string, ctx: LinkContext): string {
   flush();
   return out.join("\n");
 }
+
+export type IndexEntry = { name: string; description?: string };
+export type IndexGroup = { label: string; entries: IndexEntry[] };
+export type SidebarGroup = { label: string; items: { label: string; slug: string }[] };
+
+const BULLET_RE = /^\s*[-*]\s+\[[^\]]*\]\(([^)\s#]+\.md)(?:#[^)]*)?\)\s*(?:—\s*(.*))?$/;
+
+export function parseDocsIndex(markdown: string): IndexGroup[] {
+  const groups: IndexGroup[] = [];
+  let current: IndexGroup | undefined;
+  for (const line of markdown.split("\n")) {
+    const h = /^## (.+?)\s*$/.exec(line);
+    if (h) {
+      current = { label: h[1], entries: [] };
+      groups.push(current);
+      continue;
+    }
+    const b = BULLET_RE.exec(line);
+    if (b && current) {
+      const target = b[1];
+      const name = target === "../README.md" ? "getting-started" : target.replace(/^.*\//, "").replace(/\.md$/, "");
+      const description = b[2]?.trim();
+      current.entries.push(description ? { name, description } : { name });
+    }
+  }
+  return groups.filter((g) => g.entries.length > 0);
+}
+
+export function buildSidebar(groups: IndexGroup[], titles: Map<string, string>): SidebarGroup[] {
+  return groups.map((g) => ({
+    label: g.label,
+    items: g.entries.map((e) => {
+      const title = titles.get(e.name);
+      if (title === undefined) throw new Error(`index links unrendered page: ${e.name}`);
+      return { label: title, slug: `docs/${e.name}` };
+    }),
+  }));
+}
