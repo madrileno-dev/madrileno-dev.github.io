@@ -22,3 +22,79 @@ export function renderPage(p: PageInput): string {
   lines.push(`editUrl: ${yamlString(p.editUrl)}`, "---");
   return `${lines.join("\n")}\n${p.body}`;
 }
+
+export const REPO_BLOB = "https://github.com/madrileno-dev/madrileno/blob";
+
+export type LinkContext = {
+  sourceDir: "docs" | ".";
+  ref: string;
+  docExists: (name: string) => boolean;
+};
+
+const LINK_RE = /\[([^\]]*)\]\(([^)\s]+)(\s+"[^"]*")?\)/g;
+
+function normalizePath(parts: string[]): string {
+  const out: string[] = [];
+  for (const p of parts) {
+    if (p === "" || p === ".") continue;
+    if (p === "..") out.pop();
+    else out.push(p);
+  }
+  return out.join("/");
+}
+
+function rewriteTarget(target: string, ctx: LinkContext): string {
+  if (/^(https?:|mailto:|tel:|#)/.test(target)) return target;
+  const hashAt = target.indexOf("#");
+  const path = hashAt === -1 ? target : target.slice(0, hashAt);
+  const hash = hashAt === -1 ? "" : target.slice(hashAt);
+  const repoPath = normalizePath([...(ctx.sourceDir === "docs" ? ["docs"] : []), ...path.split("/")]);
+
+  if (repoPath === "README.md") return `/docs/getting-started/${hash}`;
+  if (repoPath === "docs/README.md") return `/docs/${hash}`;
+  const doc = /^docs\/([^/]+)\.md$/.exec(repoPath);
+  if (doc) {
+    if (!ctx.docExists(doc[1])) throw new Error(`unresolvable link: ${target}`);
+    return `/docs/${doc[1]}/${hash}`;
+  }
+  if (repoPath.endsWith(".md") && repoPath.startsWith("docs/")) {
+    throw new Error(`unresolvable link: ${target}`);
+  }
+  return `${REPO_BLOB}/${ctx.ref}/${repoPath}${hash}`;
+}
+
+function rewriteProse(text: string, ctx: LinkContext): string {
+  const spans = text.split(/(`[^`]*`)/);
+  return spans
+    .map((span, i) =>
+      i % 2 === 1
+        ? span
+        : span.replace(LINK_RE, (_m, label, target, title) => `[${label}](${rewriteTarget(target, ctx)}${title ?? ""})`),
+    )
+    .join("");
+}
+
+export function rewriteLinks(markdown: string, ctx: LinkContext): string {
+  const lines = markdown.split("\n");
+  let inFence = false;
+  const out: string[] = [];
+  let buffer: string[] = [];
+  const flush = () => {
+    if (buffer.length) {
+      out.push(rewriteProse(buffer.join("\n"), ctx));
+      buffer = [];
+    }
+  };
+  for (const line of lines) {
+    if (/^\s*(```|~~~)/.test(line)) {
+      if (!inFence) flush();
+      inFence = !inFence;
+      out.push(line);
+      continue;
+    }
+    if (inFence) out.push(line);
+    else buffer.push(line);
+  }
+  flush();
+  return out.join("\n");
+}
