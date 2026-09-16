@@ -1,0 +1,59 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [docs-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          repository: madrileno-dev/madrileno
+          ref: main
+          path: .sources/madrileno
+      - uses: actions/checkout@v7
+        with:
+          repository: madrileno-dev/.github
+          ref: main
+          path: .sources/brand
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm sync --madrileno .sources/madrileno --brand .sources/brand --ref main
+      - run: pnpm build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          PUBLISH_MANIFESTO: ${{ vars.PUBLISH_MANIFESTO }}
+          PUBLISH_SUPPORT: ${{ vars.PUBLISH_SUPPORT }}
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

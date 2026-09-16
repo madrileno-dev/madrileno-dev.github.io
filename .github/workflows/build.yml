@@ -1,0 +1,34 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          repository: madrileno-dev/madrileno
+          ref: main
+          path: .sources/madrileno
+      - uses: actions/checkout@v7
+        with:
+          repository: madrileno-dev/.github
+          ref: main
+          path: .sources/brand
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm sync --madrileno .sources/madrileno --brand .sources/brand --ref main
+      - run: pnpm build
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          PUBLISH_MANIFESTO: ${{ vars.PUBLISH_MANIFESTO }}
+          PUBLISH_SUPPORT: ${{ vars.PUBLISH_SUPPORT }}
