@@ -1,10 +1,25 @@
-<button class="m-theme" type="button" aria-label="Toggle colour theme" data-theme-toggle>
-  <span data-when="light">Light</span><span data-when="dark">Dark</span><span data-when="auto">Auto</span>
-</button>
+---
+import sun from "lucide-static/icons/sun.svg?raw";
+import moon from "lucide-static/icons/moon.svg?raw";
+import monitor from "lucide-static/icons/monitor.svg?raw";
+const icon = (s: string) =>
+  s.replace(/<!--[\s\S]*?-->\s*/, "").replace(/\s*class="[^"]*"/, "").replace(/width="24"\s+height="24"/, 'width="16" height="16" aria-hidden="true" focusable="false"');
+const options = [
+  { value: "light", label: "Light theme", svg: sun },
+  { value: "dark", label: "Dark theme", svg: moon },
+  { value: "auto", label: "Follow system theme", svg: monitor },
+];
+---
+<div class="m-theme" role="group" aria-label="Colour theme" data-theme-switch>
+  {options.map((o) => (
+    <button type="button" data-theme-value={o.value} aria-label={o.label} title={o.label} aria-pressed="false">
+      <Fragment set:html={icon(o.svg)} />
+    </button>
+  ))}
+</div>
 <script>
   const KEY = "starlight-theme";
-  const order = ["auto", "light", "dark"] as const;
-  type Theme = (typeof order)[number];
+  type Theme = "light" | "dark" | "auto";
   const stored = (): Theme => {
     try {
       const v = localStorage.getItem(KEY);
@@ -16,23 +31,27 @@
   const apply = (t: Theme) => {
     const dark = t === "dark" || (t === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
     document.documentElement.dataset.theme = dark ? "dark" : "light";
-    document.querySelectorAll<HTMLElement>("[data-theme-toggle] [data-when]").forEach((el) => {
-      el.hidden = el.dataset.when !== t;
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-switch] button").forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.themeValue === t ? "true" : "false");
     });
   };
-  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const next = order[(order.indexOf(stored()) + 1) % order.length];
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-switch] button").forEach((b) => {
+    b.addEventListener("click", () => {
+      const t = b.dataset.themeValue as Theme;
       try {
-        localStorage.setItem(KEY, next);
+        if (t === "auto") localStorage.removeItem(KEY);
+        else localStorage.setItem(KEY, t);
       } catch {}
-      apply(next);
+      apply(t);
     });
   });
   apply(stored());
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(stored()));
 </script>
 <style>
-  .m-theme { background: none; border: 1px solid var(--m-line); color: var(--m-ink-muted); border-radius: 6px; padding: 0.35rem 0.6rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
-  .m-theme:hover { color: var(--m-ink); border-color: var(--m-ink); }
+  .m-theme { display: inline-flex; padding: 2px; border: 1px solid var(--m-line); border-radius: 999px; background: var(--m-bg-raised); }
+  .m-theme button { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 0; border-radius: 999px; background: none; color: var(--m-ink-muted); cursor: pointer; padding: 0; transition: background 150ms, color 150ms; }
+  .m-theme button:hover { color: var(--m-ink); }
+  .m-theme button[aria-pressed="true"] { background: var(--m-accent); color: #fff; }
+  .m-theme button:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 2px; }
 </style>

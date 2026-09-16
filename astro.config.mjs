@@ -14,14 +14,13 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "madrileño",
-      logo: {
-        light: "./src/assets/brand/logo.svg",
-        dark: "./src/assets/brand/logo-dark.svg",
-        replacesTitle: true,
-      },
       favicon: "/favicon.svg",
       customCss: ["./src/styles/starlight.css"],
-      components: { SocialIcons: "./src/components/StarlightSocialIcons.astro" },
+      components: {
+        SiteTitle: "./src/components/StarlightSiteTitle.astro",
+        SocialIcons: "./src/components/StarlightSocialIcons.astro",
+        ThemeSelect: "./src/components/StarlightThemeSelect.astro",
+      },
       head: [
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
@@ -30,7 +29,13 @@ export default defineConfig({
       ],
       sidebar,
       lastUpdated: false,
-      expressiveCode: { shiki: { langAlias: { hocon: "properties" } } },
+      expressiveCode: {
+        shiki: { langAlias: { hocon: "properties" } },
+        defaultProps: {
+          wrap: false,
+          overridesByLang: { "scala,bash,sh,json,sql,http,hocon,properties,ts,typescript,js,yaml,yml,md": { wrap: true } },
+        },
+      },
       plugins: [starlightLinksValidator({ errorOnLocalLinks: false })],
     }),
   ],

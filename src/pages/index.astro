@@ -11,9 +11,8 @@ const description =
   <section class="m-section m-section--flush hero">
     <div class="m-container hero__grid">
       <div class="hero__copy">
-        <p class="m-eyebrow">Scala 3 backend template</p>
         <h1>A production backend. Yours from the first commit.</h1>
-        <p class="hero__lede">http4s, Skunk, cats-effect, Postgres and OpenTelemetry, with auth, scheduled jobs, an outbox and feature flags already wired. Run one script and the code is your project, not a dependency.</p>
+        <p class="hero__lede">Scala 3 underneath, so the compiler catches what tests would miss. Auth, background jobs, durable events and feature flags are already in place. One script, and the code is yours to change.</p>
         <div class="m-actions">
           <a class="m-button m-button--primary" href="/docs/getting-started/">Get started</a>
           <a class="m-button" href={links.repo} rel="noopener">GitHub</a>
@@ -33,9 +32,9 @@ sbt "~reStart"</code></pre>
   <section class="m-section" id="stack">
     <div class="m-container">
       <Reveal>
-        <p class="m-eyebrow">What is wired up</p>
-        <h2>The parts every backend needs, already there.</h2>
-        <p class="m-muted section-lede">Each one is a small Scala module you can read end to end, keep, or delete.</p>
+        <p class="m-eyebrow">Included</p>
+        <h2>What's in the box.</h2>
+        <p class="m-muted section-lede">Twelve modules of plain Scala. Nothing here is a black box, and nothing is mandatory.</p>
       </Reveal>
       <Reveal><FeatureGrid /></Reveal>
     </div>
@@ -122,7 +121,7 @@ sbt "~reStart"</code></pre>
   .hero__grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
   .hero__lede { font-size: 1.2rem; max-width: 36rem; }
   .hero__code { margin-top: 3rem; }
-  .hero__code pre { margin: 0 0 0.75rem; }
+  .hero__code pre { margin: 0 0 0.75rem; white-space: pre-wrap; overflow-wrap: anywhere; }
   .section-lede { max-width: 40rem; margin-bottom: 2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
   .principles { padding-left: 1.25rem; max-width: 46rem; margin: 0 0 1.5rem; }

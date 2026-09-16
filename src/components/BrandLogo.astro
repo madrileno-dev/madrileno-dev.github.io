@@ -1,0 +1,14 @@
+---
+import raw from "../assets/brand/logo.svg?raw";
+type Props = { height?: number };
+const { height = 32 } = Astro.props;
+const width = Math.round((height * 310) / 100);
+const svg = raw
+  .replace(/#1E1E24/gi, "currentColor")
+  .replace(/#B5122B/gi, "var(--m-accent)")
+  .replace(/width="310" height="100"/, `width="${width}" height="${height}" role="img" aria-label="madrileño"`);
+---
+<span class="brand-logo"><Fragment set:html={svg} /></span>
+<style>
+  .brand-logo { display: inline-flex; color: var(--m-ink); line-height: 0; }
+</style>

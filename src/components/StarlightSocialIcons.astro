@@ -3,14 +3,11 @@ import { navLinks } from "../site.ts";
 const items = navLinks();
 ---
 <nav class="m-nav" aria-label="Site">
-  {items.map((l) => (
-    <a href={l.href} rel={l.external ? "noopener" : undefined} target={l.external ? "_blank" : undefined}>{l.label}</a>
-  ))}
+  {items.map((l) => <a href={l.href} rel={l.external ? "noopener" : undefined}>{l.label}</a>)}
 </nav>
 <style>
-  .m-nav { display: flex; gap: 1rem; align-items: center; }
-  .m-nav a { color: var(--sl-color-gray-2); text-decoration: none; font-weight: 500; }
-  .m-nav a:hover, .m-nav a:focus-visible { color: var(--sl-color-accent); }
-  .m-nav a:focus-visible { outline: 2px solid var(--sl-color-accent); outline-offset: 3px; border-radius: 2px; }
-  @media (max-width: 50rem) { .m-nav { display: none; } }
+  .m-nav { display: flex; gap: 1.25rem; align-items: center; }
+  .m-nav a { color: var(--m-ink); text-decoration: none; font-weight: 500; }
+  .m-nav a:hover, .m-nav a:focus-visible { color: var(--m-accent); }
+  .m-nav a:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 3px; border-radius: 2px; }
 </style>
