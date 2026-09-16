@@ -21,6 +21,9 @@ importers:
       '@astrojs/check':
         specifier: 0.9.10
         version: 0.9.10(prettier@3.9.7)(typescript@7.0.2)
+      lucide-static:
+        specifier: ^1.46.0
+        version: 1.46.0
       typescript:
         specifier: 7.0.2
         version: 7.0.2
@@ -1543,6 +1546,9 @@ packages:
   lru-cache@11.5.2:
     resolution: {integrity: sha512-4pfM1Ff0x50o0tQwb5ucw/RzNyD0/YJME6IVcStalZuMWxdt3sR3huStTtxz4PUmvZfRguvDejasvQ2kifR11g==}
     engines: {node: 20 || >=22}
+
+  lucide-static@1.46.0:
+    resolution: {integrity: sha512-kq1lP/78BxG28VG3Ut2FxMeQElereTrrRwTBeXH7+olxATGcDbsuKRB/v/VKLhPrEu8BvNi6Uh2GvbH3pQcYhg==}
 
   magic-string@1.4.1:
     resolution: {integrity: sha512-8lyCu36ErXR0J9uaGKlKQoiLZKmtI63YGLE8G2o9jyRPdr4X47LusSOwgOJOzcVtp81fTAAjxR7BwKz682Jhow==}
@@ -3725,6 +3731,8 @@ snapshots:
   longest-streak@3.1.0: {}
 
   lru-cache@11.5.2: {}
+
+  lucide-static@1.46.0: {}
 
   magic-string@1.4.1:
     dependencies:

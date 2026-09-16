@@ -26,6 +26,7 @@ const ogImage = "https://raw.githubusercontent.com/madrileno-dev/.github/main/br
         try { t = localStorage.getItem("starlight-theme"); } catch (e) {}
         var dark = t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
         document.documentElement.dataset.theme = dark ? "dark" : "light";
+        document.documentElement.classList.add("js");
       })();
     </script>
   </head>

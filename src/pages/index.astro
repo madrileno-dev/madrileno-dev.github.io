@@ -1,7 +1,134 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Reveal from "../components/Reveal.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import { links } from "../site.ts";
+import { flags } from "../flags.ts";
+const description =
+  "madrileño is a production Scala 3 backend template. Auth, scheduled jobs, an outbox, feature flags and OpenTelemetry already wired. One script makes it your project.";
 ---
-<SiteLayout title="madrileño" description="A production Scala 3 backend template.">
-  <section class="m-section m-section--flush"><div class="m-container"><Reveal><h1>madrileño</h1><p>Landing page arrives in the next task.</p></Reveal></div></section>
+<SiteLayout title="madrileño — a production Scala 3 backend, yours from the first commit" description={description}>
+  <section class="m-section m-section--flush hero">
+    <div class="m-container hero__grid">
+      <div class="hero__copy">
+        <p class="m-eyebrow">Scala 3 backend template</p>
+        <h1>A production backend. Yours from the first commit.</h1>
+        <p class="hero__lede">http4s, Skunk, cats-effect, Postgres and OpenTelemetry, with auth, scheduled jobs, an outbox and feature flags already wired. Run one script and the code is your project, not a dependency.</p>
+        <div class="m-actions">
+          <a class="m-button m-button--primary" href="/docs/getting-started/">Get started</a>
+          <a class="m-button" href={links.repo} rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="hero__code">
+        <pre><code>git clone {links.repo} my-project
+cd my-project
+./scripts/init-project.scala my-project
+docker compose up -d
+sbt "~reStart"</code></pre>
+        <p class="m-muted">Five commands to a running API with migrations, tracing and a dev login.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section" id="stack">
+    <div class="m-container">
+      <Reveal>
+        <p class="m-eyebrow">What is wired up</p>
+        <h2>The parts every backend needs, already there.</h2>
+        <p class="m-muted section-lede">Each one is a small Scala module you can read end to end, keep, or delete.</p>
+      </Reveal>
+      <Reveal><FeatureGrid /></Reveal>
+    </div>
+  </section>
+
+  <section class="m-section" id="assistant">
+    <div class="m-container two-col">
+      <Reveal>
+        <p class="m-eyebrow">Built for assistant-driven work</p>
+        <h2>Your coding assistant already knows the conventions.</h2>
+      </Reveal>
+      <Reveal>
+        <p>A committed <code>.mcp.json</code> gives Claude Code two servers: Metals, for a live compile-and-test loop, and the madrileno MCP server, a read-only view of the upstream template. The docs on this site double as the assistant's knowledge base.</p>
+        <p>Ask for a new module and the assistant scaffolds it the way the existing ones are built, then compiles and runs the tests before it reports back.</p>
+        <a class="m-button" href="/docs/ai-assisted-dev/">How the setup works</a>
+      </Reveal>
+    </div>
+  </section>
+
+  <section class="m-section" id="own">
+    <div class="m-container two-col">
+      <Reveal>
+        <p class="m-eyebrow">Code you own</p>
+        <h2>Template, not framework.</h2>
+      </Reveal>
+      <Reveal>
+        <p><code>init-project</code> renames the package, strips the wine-auction demo and removes the template licence. What remains is your repository. Nothing at runtime depends on madrileño.</p>
+        <p>When the template improves, pull the parts you want. The upstream guide walks through the diff and the pin that keeps your assistant's reference in sync.</p>
+        <div class="m-actions">
+          <a class="m-button" href="/docs/scripts/">The scripts</a>
+          <a class="m-button" href="/docs/updating-from-upstream/">Updating from upstream</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
+
+  {flags.manifesto && (
+    <section class="m-section" id="manifesto">
+      <div class="m-container two-col">
+        <Reveal><p class="m-eyebrow">Why it exists</p><h2>Small teams need something that works today.</h2></Reveal>
+        <Reveal><p>The story behind the choices in madrileño, and the ones we refused to make.</p><a class="m-button" href="/manifesto/">Read the manifesto</a></Reveal>
+      </div>
+    </section>
+  )}
+
+  <section class="m-section" id="principles">
+    <div class="m-container">
+      <Reveal>
+        <p class="m-eyebrow">Five principles</p>
+        <h2>Most design choices are consequences of one of these.</h2>
+      </Reveal>
+      <Reveal as="ol" class="principles">
+        <li><strong>Domain-first.</strong> Domain types depend on nothing infrastructure-shaped. Codecs live next to their consumers.</li>
+        <li><strong>Type safety as a feature.</strong> One opaque type per concept, an ADT per state. Mix-ups fail to compile.</li>
+        <li><strong>Composition over duplication.</strong> Modules declare what they contribute. Adding one does not require remembering the others.</li>
+        <li><strong>Functional and explicit.</strong> Immutable data, pure functions, outcomes as values. Failure modes readable in a signature.</li>
+        <li><strong>Pluggable and pragmatic.</strong> Delete what you do not need. Swap what does not fit. Prefer the pattern you can still read in a year.</li>
+      </Reveal>
+      <Reveal><a class="m-button" href="/docs/principles/">Read the principles</a></Reveal>
+    </div>
+  </section>
+
+  <section class="m-section" id="frontend">
+    <div class="m-container two-col">
+      <Reveal><p class="m-eyebrow">Companion frontend</p><h2>Backend drift is a compile error.</h2></Reveal>
+      <Reveal>
+        <p>A small React 19 and TypeScript app built against the oRPC contract generated from these routes. Rename a field on the backend and the frontend fails to build at the call site.</p>
+        <a class="m-button" href={links.frontendRepo} rel="noopener">madrileno-frontend on GitHub</a>
+      </Reveal>
+    </div>
+  </section>
+
+  {flags.support && (
+    <section class="m-section" id="support">
+      <div class="m-container">
+        <Reveal><p class="m-eyebrow">Need a hand</p><p>The people who built madrileño also build products on it. <a href="/support/">Paid support and consulting.</a></p></Reveal>
+      </div>
+    </section>
+  )}
 </SiteLayout>
+
+<style>
+  .hero { padding-top: clamp(3rem, 10vw, 7rem); }
+  .hero__grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+  .hero__lede { font-size: 1.2rem; max-width: 36rem; }
+  .hero__code { margin-top: 3rem; }
+  .hero__code pre { margin: 0 0 0.75rem; }
+  .section-lede { max-width: 40rem; margin-bottom: 2rem; }
+  .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+  .principles { padding-left: 1.25rem; max-width: 46rem; margin: 0 0 1.5rem; }
+  .principles li { margin-bottom: 0.75rem; }
+  @media (max-width: 48rem) {
+    .hero__grid, .two-col { grid-template-columns: 1fr; }
+    .hero__code { margin-top: 0; }
+  }
+</style>

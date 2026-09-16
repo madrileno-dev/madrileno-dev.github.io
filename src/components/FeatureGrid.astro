@@ -1,0 +1,52 @@
+---
+import keyRound from "lucide-static/icons/key-round.svg?raw";
+import calendarClock from "lucide-static/icons/calendar-clock.svg?raw";
+import mailbox from "lucide-static/icons/mailbox.svg?raw";
+import radio from "lucide-static/icons/radio.svg?raw";
+import plugZap from "lucide-static/icons/plug-zap.svg?raw";
+import flag from "lucide-static/icons/flag.svg?raw";
+import image from "lucide-static/icons/image.svg?raw";
+import gauge from "lucide-static/icons/gauge.svg?raw";
+import activity from "lucide-static/icons/activity.svg?raw";
+import mail from "lucide-static/icons/mail.svg?raw";
+import globe from "lucide-static/icons/globe.svg?raw";
+import databaseZap from "lucide-static/icons/database-zap.svg?raw";
+
+const icons: Record<string, string> = {
+  "key-round": keyRound, "calendar-clock": calendarClock, mailbox, radio, "plug-zap": plugZap, flag,
+  image, gauge, activity, mail, globe, "database-zap": databaseZap,
+};
+
+const features = [
+  { icon: "key-round", title: "Auth", href: "/docs/auth/", text: "Firebase or any OIDC provider behind one verifier trait. JWT access tokens, refresh rotation, a dev login for local work." },
+  { icon: "calendar-clock", title: "Scheduler", href: "/docs/scheduler/", text: "Recurring and one-off tasks stored in Postgres. No extra service, survives restarts, has an admin UI." },
+  { icon: "mailbox", title: "Outbox", href: "/docs/outbox/", text: "Domain events written in the same transaction as the change. Delivery ledger, retries, dead letters, replay." },
+  { icon: "radio", title: "Event bus", href: "/docs/event-bus/", text: "An fs2 topic in one JVM or Postgres LISTEN/NOTIFY across many. Same interface, pick the scope." },
+  { icon: "plug-zap", title: "WebSockets", href: "/docs/websockets/", text: "Project internal events to clients as versioned envelope DTOs." },
+  { icon: "flag", title: "Feature flags", href: "/docs/feature-flags/", text: "Typed variants, targeting rules and segments, sticky percentage rollouts, admin API with an audit log." },
+  { icon: "image", title: "File storage and imaging", href: "/docs/file-storage/", text: "Disk or S3-compatible storage. Resize, crop, rotate, convert, strip EXIF." },
+  { icon: "gauge", title: "Rate limiting", href: "/docs/rate-limiting/", text: "Per-route buckets keyed by IP, user or header. Trusted-proxy aware." },
+  { icon: "activity", title: "Observability", href: "/docs/observability/", text: "OpenTelemetry traces, metrics and logs. Every error response carries its trace id." },
+  { icon: "mail", title: "Mailer", href: "/docs/mailer/", text: "Typed templates rendered and queued through the scheduler. Previewed in Mailpit during development." },
+  { icon: "globe", title: "External APIs", href: "/docs/external-apis/", text: "sttp behind a trait and a Live class. Swap in a fake in tests." },
+  { icon: "database-zap", title: "Cache", href: "/docs/cache/", text: "Caffeine behind one small trait. Honest about being per JVM." },
+];
+
+const iconSvg = (name: string) =>
+  icons[name]
+    .replace(/<!--[\s\S]*?-->\s*/, "")
+    .replace(/\s*class="[^"]*"/, "")
+    .replace(/width="24"\s+height="24"/, 'width="22" height="22" aria-hidden="true" focusable="false"');
+---
+<div class="m-grid">
+  {features.map((f) => (
+    <a class="m-card feature" href={f.href}>
+      <span class="feature__icon"><Fragment set:html={iconSvg(f.icon)} /></span>
+      <h3>{f.title}</h3>
+      <p>{f.text}</p>
+    </a>
+  ))}
+</div>
+<style>
+  .feature__icon { display: inline-flex; color: var(--m-accent); margin-bottom: 0.75rem; }
+</style>
