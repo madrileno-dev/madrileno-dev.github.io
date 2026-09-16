@@ -1,0 +1,32 @@
+@import "./tokens.css";
+
+:root {
+  --sl-font: var(--m-font-body);
+  --sl-font-mono: var(--m-font-mono);
+  --sl-color-accent-low: var(--m-accent-soft);
+  --sl-color-accent: var(--m-accent);
+  --sl-color-accent-high: #7a0c1d;
+  --sl-color-white: var(--m-ink);
+  --sl-color-gray-1: #2a2a31;
+  --sl-color-gray-2: #45454d;
+  --sl-color-gray-3: #6b6a72;
+  --sl-color-gray-4: #9b988f;
+  --sl-color-gray-5: #cfc9be;
+  --sl-color-gray-6: #ebe6dd;
+  --sl-color-gray-7: #f5f1ea;
+  --sl-color-black: var(--m-bg);
+}
+:root[data-theme="dark"] {
+  --sl-color-accent-high: #f2a3b0;
+  --sl-color-gray-1: #e9e4dc;
+  --sl-color-gray-2: #c9c4bb;
+  --sl-color-gray-3: #9b988f;
+  --sl-color-gray-4: #6b6a72;
+  --sl-color-gray-5: #45454d;
+  --sl-color-gray-6: #2a2a31;
+  --sl-color-black: var(--m-bg);
+}
+.site-title, .sl-markdown-content h1, .sl-markdown-content h2, .sl-markdown-content h3 {
+  font-family: var(--m-font-display);
+  font-weight: 600;
+}

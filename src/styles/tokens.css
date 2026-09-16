@@ -1,0 +1,23 @@
+:root {
+  --m-bg: #f5f1ea;
+  --m-bg-raised: #fffdf9;
+  --m-ink: #1e1e24;
+  --m-ink-muted: #5c5b63;
+  --m-accent: #b5122b;
+  --m-accent-soft: #f3d9dd;
+  --m-line: #e2dcd2;
+  --m-font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --m-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --m-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --m-bg: #1e1e24;
+  --m-bg-raised: #27272e;
+  --m-ink: #f5f1ea;
+  --m-ink-muted: #b3ada3;
+  --m-accent: #e0304a;
+  --m-accent-soft: #3a1e24;
+  --m-line: #35353d;
+  color-scheme: dark;
+}

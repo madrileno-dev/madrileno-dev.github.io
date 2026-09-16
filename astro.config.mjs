@@ -14,6 +14,20 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "madrileño",
+      logo: {
+        light: "./src/assets/brand/logo.svg",
+        dark: "./src/assets/brand/logo-dark.svg",
+        replacesTitle: true,
+      },
+      favicon: "/favicon.svg",
+      customCss: ["./src/styles/starlight.css"],
+      components: { SocialIcons: "./src/components/StarlightSocialIcons.astro" },
+      head: [
+        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
+        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
+        { tag: "link", attrs: { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&display=swap" } },
+        { tag: "meta", attrs: { property: "og:image", content: "https://raw.githubusercontent.com/madrileno-dev/.github/main/brand/png/social-backend.png" } },
+      ],
       sidebar,
       lastUpdated: false,
       expressiveCode: { shiki: { langAlias: { hocon: "properties" } } },
