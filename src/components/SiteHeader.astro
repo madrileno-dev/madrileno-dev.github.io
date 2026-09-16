@@ -1,0 +1,29 @@
+---
+import { navLinks } from "../site.ts";
+import ThemeToggle from "./ThemeToggle.astro";
+const items = navLinks();
+---
+<header class="m-header">
+  <div class="m-container m-header__row">
+    <a class="m-header__brand" href="/" aria-label="madrileño home">
+      <img src="/brand/logo.svg" alt="" width="132" height="36" class="only-light" />
+      <img src="/brand/logo-dark.svg" alt="" width="132" height="36" class="only-dark" />
+    </a>
+    <nav aria-label="Site" class="m-header__nav">
+      {items.map((l) => <a href={l.href} rel={l.external ? "noopener" : undefined}>{l.label}</a>)}
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+<style>
+  .m-header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--m-bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--m-line); }
+  .m-header__row { display: flex; align-items: center; justify-content: space-between; min-height: 3.75rem; gap: 1rem; }
+  .m-header__brand img { display: block; height: 36px; width: auto; }
+  .m-header__nav { display: flex; align-items: center; gap: 1.25rem; }
+  .m-header__nav a { color: var(--m-ink); text-decoration: none; font-weight: 500; }
+  .m-header__nav a:hover { color: var(--m-accent); }
+  .only-dark { display: none; }
+  :global([data-theme="dark"]) .only-light { display: none; }
+  :global([data-theme="dark"]) .only-dark { display: block; }
+  @media (max-width: 40rem) { .m-header__nav { gap: 0.9rem; font-size: 0.95rem; } }
+</style>

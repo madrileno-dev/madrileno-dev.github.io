@@ -1,0 +1,38 @@
+<button class="m-theme" type="button" aria-label="Toggle colour theme" data-theme-toggle>
+  <span data-when="light">Light</span><span data-when="dark">Dark</span><span data-when="auto">Auto</span>
+</button>
+<script>
+  const KEY = "starlight-theme";
+  const order = ["auto", "light", "dark"] as const;
+  type Theme = (typeof order)[number];
+  const stored = (): Theme => {
+    try {
+      const v = localStorage.getItem(KEY);
+      return v === "light" || v === "dark" ? v : "auto";
+    } catch {
+      return "auto";
+    }
+  };
+  const apply = (t: Theme) => {
+    const dark = t === "dark" || (t === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    document.querySelectorAll<HTMLElement>("[data-theme-toggle] [data-when]").forEach((el) => {
+      el.hidden = el.dataset.when !== t;
+    });
+  };
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const next = order[(order.indexOf(stored()) + 1) % order.length];
+      try {
+        localStorage.setItem(KEY, next);
+      } catch {}
+      apply(next);
+    });
+  });
+  apply(stored());
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => apply(stored()));
+</script>
+<style>
+  .m-theme { background: none; border: 1px solid var(--m-line); color: var(--m-ink-muted); border-radius: 6px; padding: 0.35rem 0.6rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  .m-theme:hover { color: var(--m-ink); border-color: var(--m-ink); }
+</style>

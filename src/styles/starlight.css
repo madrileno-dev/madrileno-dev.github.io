@@ -17,7 +17,7 @@
   --sl-color-black: var(--m-bg);
 }
 :root[data-theme="dark"] {
-  --sl-color-accent-high: #f2a3b0;
+  --sl-color-accent-high: #e0304a;
   --sl-color-gray-1: #e9e4dc;
   --sl-color-gray-2: #c9c4bb;
   --sl-color-gray-3: #9b988f;
@@ -29,4 +29,9 @@
 .site-title, .sl-markdown-content h1, .sl-markdown-content h2, .sl-markdown-content h3 {
   font-family: var(--m-font-display);
   font-weight: 600;
+}
+:root[data-theme="dark"] .sidebar-content a[aria-current="page"] {
+  background-color: var(--m-accent-soft);
+  color: var(--m-ink);
+  box-shadow: inset 3px 0 0 var(--m-accent);
 }
