@@ -97,6 +97,12 @@ describe("rewriteLinks", () => {
     );
   });
 
+  it("rewrites links whose label is inline code", () => {
+    expect(rewriteLinks("see [`http.md`](docs/http.md) and [`docs/`](docs/README.md)", fromRoot)).toBe(
+      "see [`http.md`](/docs/http/) and [`docs/`](/docs/)",
+    );
+  });
+
   it("fails on a relative .md that is not a known doc", () => {
     expect(() => rewriteLinks("[x](missing.md)", fromDoc)).toThrow("unresolvable link: missing.md");
   });

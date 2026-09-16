@@ -64,14 +64,16 @@ function rewriteTarget(target: string, ctx: LinkContext): string {
 }
 
 function rewriteProse(text: string, ctx: LinkContext): string {
-  const spans = text.split(/(`[^`]*`)/);
-  return spans
-    .map((span, i) =>
-      i % 2 === 1
-        ? span
-        : span.replace(LINK_RE, (_m, label, target, title) => `[${label}](${rewriteTarget(target, ctx)}${title ?? ""})`),
-    )
-    .join("");
+  const codeSpans: string[] = [];
+  const masked = text.replace(/`[^`]*`/g, (span) => {
+    codeSpans.push(span);
+    return `\u0000${codeSpans.length - 1}\u0000`;
+  });
+  const rewritten = masked.replace(
+    LINK_RE,
+    (_m, label, target, title) => `[${label}](${rewriteTarget(target, ctx)}${title ?? ""})`,
+  );
+  return rewritten.replace(/\u0000(\d+)\u0000/g, (_m, i) => codeSpans[Number(i)]);
 }
 
 export function rewriteLinks(markdown: string, ctx: LinkContext): string {
