@@ -2,11 +2,6 @@
 import Reveal from "../Reveal.astro";
 import { links } from "../../site.ts";
 
-const proof = [
-  { value: "13+", label: "years shipping production software for other companies" },
-  { value: "Hundreds", label: "of projects delivered, from first prototype to steady state" },
-  { value: "Hundreds", label: "of engineers hired, onboarded and handed over to client teams" },
-];
 
 const offers = [
   { title: "Kickoff", text: "We stand your project up on the template and shape the first modules around your domain, with your team in the room from day one." },
@@ -15,12 +10,6 @@ const offers = [
   { title: "Support", text: "Upgrades from upstream, incidents and the awkward questions, answered by the people who wrote the code." },
 ];
 
-const work = [
-  { name: "Domino Data Lab", text: "Full-stack platform work for a data science company founded out of Harvard and MIT." },
-  { name: "Nevion", text: "Remote configuration of broadcast network devices, used to deliver Premier League football." },
-  { name: "Citrine Informatics", text: "Scala engineers on an MLOps platform for materials science." },
-  { name: "Imperative", text: "Took over as the whole technology team for a peer-coaching platform sold to enterprises." },
-];
 ---
 <section class="m-section m-section--flush">
   <div class="m-container">
@@ -30,19 +19,6 @@ const work = [
       <h1>Build on madrileño with the team that wrote it.</h1>
       <p class="lede">Iterators is a software consulting company. We have spent thirteen years building products for founders and product teams, and madrileño is part of what we learned, written down as code. If you are starting on it, we get you further than the docs alone can.</p>
       <a class="m-button m-button--primary" href={links.iteratorsContact} rel="noopener">Schedule a call</a>
-    </Reveal>
-  </div>
-</section>
-
-<section class="m-section">
-  <div class="m-container">
-    <Reveal as="dl" class="proof">
-      {proof.map((p) => (
-        <div class="proof__item">
-          <dt class="proof__value">{p.value}</dt>
-          <dd class="proof__label">{p.label}</dd>
-        </div>
-      ))}
     </Reveal>
   </div>
 </section>
@@ -77,15 +53,12 @@ const work = [
 <section class="m-section">
   <div class="m-container two-col">
     <Reveal>
-      <p class="m-eyebrow">Selected work</p>
-      <h2>Fintech, healthtech, broadcasting, machine learning.</h2>
+      <p class="m-eyebrow">Track record</p>
+      <h2>Thirteen years, hundreds of projects.</h2>
     </Reveal>
     <Reveal>
-      <ul class="work">
-        {work.map((w) => (
-          <li><strong>{w.name}</strong> <span class="m-muted">{w.text}</span></li>
-        ))}
-      </ul>
+      <p>Fintech, healthtech, broadcasting, machine learning, HR. Founders raising a first round, and companies that already had a platform team and needed more hands on it.</p>
+      <p>We have also hired hundreds of engineers and handed finished teams over to the people who own them, which is usually the harder half of the job.</p>
       <a class="m-button" href="https://www.iteratorshq.com/portfolio/" rel="noopener">See the portfolio</a>
     </Reveal>
   </div>
@@ -109,12 +82,5 @@ const work = [
   .by { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: var(--m-font-display); font-weight: 600; }
   .lede { font-size: 1.2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
-  .proof { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 0; }
-  .proof__item { border-top: 2px solid var(--m-accent); padding-top: 1rem; }
-  .proof__value { font-family: var(--m-font-display); font-weight: 600; font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
-  .proof__label { margin: 0.5rem 0 0; color: var(--m-ink-muted); font-size: 0.95rem; max-width: 22rem; }
-  .work { list-style: none; padding: 0; margin: 0 0 1.5rem; }
-  .work li { padding: 0.75rem 0; border-bottom: 1px solid var(--m-line); }
-  .work li:first-child { padding-top: 0; }
   @media (max-width: 48rem) { .two-col { grid-template-columns: 1fr; } }
 </style>
