@@ -3,6 +3,7 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import Reveal from "../components/Reveal.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import IteratorsLogo from "../components/icons/IteratorsLogo.astro";
+import GithubMark from "../components/icons/GithubMark.astro";
 import { links } from "../site.ts";
 import { flags } from "../flags.ts";
 const commands = [
@@ -24,7 +25,7 @@ const description =
         <p class="hero__lede">Wired for coding assistants from day one: a live compile-and-test loop and docs the assistant reads as its knowledge base. Scala 3 underneath, so the compiler catches what tests would miss. Auth, background jobs, durable events and feature flags are already in place, and one script makes the code yours.</p>
         <div class="m-actions">
           <a class="m-button m-button--primary" href="/docs/getting-started/">Get started</a>
-          <a class="m-button" href={links.repo} rel="noopener">GitHub</a>
+          <a class="m-button" href={links.repo} rel="noopener"><GithubMark size={18} />GitHub</a>
         </div>
       </div>
       <div class="hero__code">
@@ -109,7 +110,7 @@ const description =
       <Reveal><p class="m-eyebrow">Companion frontend</p><h2>Backend drift is a compile error.</h2></Reveal>
       <Reveal>
         <p>A small React 19 and TypeScript app built against the oRPC contract generated from these routes. Rename a field on the backend and the frontend fails to build at the call site.</p>
-        <a class="m-button" href={links.frontendRepo} rel="noopener">madrileno-frontend on GitHub</a>
+        <a class="m-button" href={links.frontendRepo} rel="noopener"><GithubMark size={18} />madrileno-frontend</a>
       </Reveal>
     </div>
   </section>
