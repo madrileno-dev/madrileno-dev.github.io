@@ -5,6 +5,7 @@ export const links = {
   frontendRepo: "https://github.com/madrileno-dev/madrileno-frontend",
   org: "https://github.com/madrileno-dev",
   iterators: "https://www.iteratorshq.com/",
+  iteratorsContact: "https://www.iteratorshq.com/contact/",
 };
 
 export type NavLink = { label: string; href: string; external?: boolean; icon?: "github" };

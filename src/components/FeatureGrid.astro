@@ -18,18 +18,18 @@ const icons: Record<string, string> = {
 };
 
 const features = [
-  { icon: "key-round", title: "Auth", href: "/docs/auth/", text: "Firebase or any OIDC provider behind one verifier trait. JWT access tokens, refresh rotation, a dev login for local work." },
-  { icon: "calendar-clock", title: "Scheduler", href: "/docs/scheduler/", text: "Recurring and one-off tasks stored in Postgres. No extra service, survives restarts, has an admin UI." },
-  { icon: "mailbox", title: "Outbox", href: "/docs/outbox/", text: "Domain events written in the same transaction as the change. Delivery ledger, retries, dead letters, replay." },
-  { icon: "radio", title: "Event bus", href: "/docs/event-bus/", text: "An fs2 topic in one JVM or Postgres LISTEN/NOTIFY across many. Same interface, pick the scope." },
-  { icon: "plug-zap", title: "WebSockets", href: "/docs/websockets/", text: "Project internal events to clients as versioned envelope DTOs." },
-  { icon: "flag", title: "Feature flags", href: "/docs/feature-flags/", text: "Typed variants, targeting rules and segments, sticky percentage rollouts, admin API with an audit log." },
-  { icon: "image", title: "File storage and imaging", href: "/docs/file-storage/", text: "Disk or S3-compatible storage. Resize, crop, rotate, convert, strip EXIF." },
-  { icon: "gauge", title: "Rate limiting", href: "/docs/rate-limiting/", text: "Per-route buckets keyed by IP, user or header. Trusted-proxy aware." },
-  { icon: "activity", title: "Observability", href: "/docs/observability/", text: "OpenTelemetry traces, metrics and logs. Every error response carries its trace id." },
-  { icon: "mail", title: "Mailer", href: "/docs/mailer/", text: "Typed templates rendered and queued through the scheduler. Previewed in Mailpit during development." },
-  { icon: "globe", title: "External APIs", href: "/docs/external-apis/", text: "sttp behind a trait and a Live class. Swap in a fake in tests." },
-  { icon: "database-zap", title: "Cache", href: "/docs/cache/", text: "Caffeine behind one small trait, scoped to a single JVM." },
+  { icon: "key-round", title: "Sign-in and sessions", href: "/docs/auth/", text: "Let people sign in with Google, a company SSO or email. Sessions refresh themselves, and a dev login keeps you working offline." },
+  { icon: "calendar-clock", title: "Background jobs", href: "/docs/scheduler/", text: "Run work on a schedule, or once at a chosen time. Jobs outlive restarts, retry on failure and show up in an admin view." },
+  { icon: "mailbox", title: "Reliable events", href: "/docs/outbox/", text: "Tell other systems what happened, but only once the change is really committed. Failed deliveries retry, then wait to be replayed." },
+  { icon: "radio", title: "Internal events", href: "/docs/event-bus/", text: "Let one part of the app react to another without the two depending on each other. The same code works on one instance or a dozen." },
+  { icon: "plug-zap", title: "Live updates", href: "/docs/websockets/", text: "Push changes to open browser connections as they happen, in a stable public shape clients can build against." },
+  { icon: "flag", title: "Feature flags", href: "/docs/feature-flags/", text: "Ship code switched off, turn it on for one customer, then roll it out by percentage. Changing your mind costs no deploy." },
+  { icon: "image", title: "Uploads and images", href: "/docs/file-storage/", text: "Accept files, keep them on disk or in the cloud, and resize, crop or strip metadata on the way through." },
+  { icon: "gauge", title: "Rate limits", href: "/docs/rate-limiting/", text: "Cap how often an endpoint can be called, per user, per IP or per key, so one bad client cannot ruin the afternoon." },
+  { icon: "activity", title: "When something breaks", href: "/docs/observability/", text: "Traces, metrics and logs from the first request. Every error a caller sees carries an id you can search for." },
+  { icon: "mail", title: "Email", href: "/docs/mailer/", text: "Typed templates, queued and retried like any other job. In development they land in a local inbox instead of a real one." },
+  { icon: "globe", title: "Third-party APIs", href: "/docs/external-apis/", text: "One shape for calling someone else's service, with a fake to drop in so your tests stay fast and offline." },
+  { icon: "database-zap", title: "Caching", href: "/docs/cache/", text: "Hold expensive answers in memory behind an interface small enough to swap out or delete." },
 ];
 
 const iconSvg = (name: string) =>
