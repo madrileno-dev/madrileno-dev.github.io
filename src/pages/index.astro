@@ -9,8 +9,9 @@ import { flags } from "../flags.ts";
 const commands = [
   `git clone ${links.repo}`,
   "cd madrileno",
-  "./scripts/init-project.scala my-project",
+  "cp .env.sample .env",
   "docker compose up -d",
+  'sbt "runMain madrileno.main.MigrateMain"',
   'sbt "~reStart"',
 ];
 const description =
@@ -32,7 +33,7 @@ const description =
         <pre class="terminal"><code>{commands.map((c) => (
           <span class="terminal__line"><span class="terminal__prompt" aria-hidden="true">$</span>{c}</span>
         ))}</code></pre>
-        <p class="m-muted">Five commands to a running API with migrations, tracing and a dev login.</p>
+        <p class="m-muted">A running API on <code>:9000</code>, with tracing, mail capture and a dev login. One more script renames it to your project.</p>
       </div>
     </div>
   </section>
