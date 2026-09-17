@@ -1,44 +1,120 @@
 ---
 import Reveal from "../Reveal.astro";
 import { links } from "../../site.ts";
+
+const proof = [
+  { value: "13+", label: "years shipping production software for other companies" },
+  { value: "Hundreds", label: "of projects delivered, from first prototype to steady state" },
+  { value: "Hundreds", label: "of engineers hired, onboarded and handed over to client teams" },
+];
+
+const offers = [
+  { title: "Kickoff", text: "We stand your project up on the template and shape the first modules around your domain, with your team in the room from day one." },
+  { title: "Build", text: "We build the product on it, backend and frontend, as an extension of your team. You own every line and every decision." },
+  { title: "Review", text: "A second pair of eyes on architecture, security and the parts of the template you changed, before they meet real traffic." },
+  { title: "Support", text: "Upgrades from upstream, incidents and the awkward questions, answered by the people who wrote the code." },
+];
+
+const work = [
+  { name: "Domino Data Lab", text: "Full-stack platform work for a data science company founded out of Harvard and MIT." },
+  { name: "Nevion", text: "Remote configuration of broadcast network devices, used to deliver Premier League football." },
+  { name: "Citrine Informatics", text: "Scala engineers on an MLOps platform for materials science." },
+  { name: "Imperative", text: "Took over as the whole technology team for a peer-coaching platform sold to enterprises." },
+];
 ---
 <section class="m-section m-section--flush">
-  <div class="m-container support">
-    <Reveal>
+  <div class="m-container">
+    <Reveal class="support-hero">
       <p class="m-eyebrow">Paid support and consulting</p>
       <p class="by"><span class="m-muted">by</span> <a href={links.iterators} rel="noopener">Iterators</a></p>
       <h1>Build on madrileño with the team that wrote it.</h1>
-      <p class="lede">madrileño is built and maintained by <a href={links.iterators} rel="noopener">Iterators</a>, a software studio that ships products for founders and product teams. If you are starting on the template, we get you moving faster than the docs alone.</p>
+      <p class="lede">Iterators is a software consulting company. We have spent thirteen years building products for founders and product teams, and madrileño is part of what we learned, written down as code. If you are starting on it, we get you further than the docs alone can.</p>
       <a class="m-button m-button--primary" href={links.iteratorsContact} rel="noopener">Schedule a call</a>
     </Reveal>
   </div>
 </section>
+
 <section class="m-section">
   <div class="m-container">
-    <Reveal><h2>What we do around it</h2></Reveal>
-    <Reveal class="m-grid offers">
-      <div class="m-card"><h3>Kickoff</h3><p>We stand your project up on the template and adapt the first modules to your domain, with your team in the loop from day one.</p></div>
-      <div class="m-card"><h3>Build</h3><p>We build the product on it, backend and frontend, as an extension of your team. You own every line.</p></div>
-      <div class="m-card"><h3>Review</h3><p>A second pair of eyes on architecture, security and the parts of the template you changed, before they reach production.</p></div>
-      <div class="m-card"><h3>Support</h3><p>Upgrades from upstream, incidents and questions, answered by people who know the code.</p></div>
+    <Reveal as="dl" class="proof">
+      {proof.map((p) => (
+        <div class="proof__item">
+          <dt class="proof__value">{p.value}</dt>
+          <dd class="proof__label">{p.label}</dd>
+        </div>
+      ))}
     </Reveal>
   </div>
 </section>
+
 <section class="m-section">
   <div class="m-container two-col">
-    <Reveal><h2>Who this is for</h2></Reveal>
     <Reveal>
-      <p>Founders and small teams who need a backend that holds up, without a platform team to keep it that way.</p>
-      <p>Tell us what you are building and where you are stuck. We reply within two working days.</p>
+      <p class="m-eyebrow">Why this template exists</p>
+      <h2>We kept rebuilding the same backend.</h2>
+    </Reveal>
+    <Reveal>
+      <p>Across hundreds of projects, the first two months looked the same every time: sign-in, background jobs, events that cannot be lost, flags, tracing. Work nobody is paying you to do twice.</p>
+      <p>So we keep sharpening the process and the tools instead of rebuilding them. madrileño is the backend half of that, in the open, on the same terms we use ourselves. Hiring us is a way to buy the rest: the judgement about what to keep, what to delete and what to build next.</p>
+    </Reveal>
+  </div>
+</section>
+
+<section class="m-section">
+  <div class="m-container">
+    <Reveal>
+      <p class="m-eyebrow">How we help</p>
+      <h2>Four ways in.</h2>
+    </Reveal>
+    <Reveal class="m-grid">
+      {offers.map((o) => (
+        <div class="m-card"><h3>{o.title}</h3><p>{o.text}</p></div>
+      ))}
+    </Reveal>
+  </div>
+</section>
+
+<section class="m-section">
+  <div class="m-container two-col">
+    <Reveal>
+      <p class="m-eyebrow">Selected work</p>
+      <h2>Fintech, healthtech, broadcasting, machine learning.</h2>
+    </Reveal>
+    <Reveal>
+      <ul class="work">
+        {work.map((w) => (
+          <li><strong>{w.name}</strong> <span class="m-muted">{w.text}</span></li>
+        ))}
+      </ul>
+      <a class="m-button" href="https://www.iteratorshq.com/portfolio/" rel="noopener">See the portfolio</a>
+    </Reveal>
+  </div>
+</section>
+
+<section class="m-section">
+  <div class="m-container two-col">
+    <Reveal>
+      <p class="m-eyebrow">Who this is for</p>
+      <h2>Small teams with a deadline.</h2>
+    </Reveal>
+    <Reveal>
+      <p>Founders and product teams who need a backend that holds up, without hiring a platform team to keep it that way.</p>
+      <p>Tell us what you are building and where you are stuck. We answer quickly, and we say no when we are not the right people.</p>
       <a class="m-button m-button--primary" href={links.iteratorsContact} rel="noopener">Talk to Iterators</a>
     </Reveal>
   </div>
 </section>
 <style>
-  .support { padding-top: clamp(3rem, 10vw, 6rem); }
-  .support > :global(.m-reveal) { max-width: 46rem; }
+  .support-hero { max-width: 46rem; padding-top: clamp(2rem, 6vw, 4rem); }
   .by { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: var(--m-font-display); font-weight: 600; }
   .lede { font-size: 1.2rem; }
-  .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+  .proof { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 0; }
+  .proof__item { border-top: 2px solid var(--m-accent); padding-top: 1rem; }
+  .proof__value { font-family: var(--m-font-display); font-weight: 600; font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .proof__label { margin: 0.5rem 0 0; color: var(--m-ink-muted); font-size: 0.95rem; max-width: 22rem; }
+  .work { list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .work li { padding: 0.75rem 0; border-bottom: 1px solid var(--m-line); }
+  .work li:first-child { padding-top: 0; }
   @media (max-width: 48rem) { .two-col { grid-template-columns: 1fr; } }
 </style>
