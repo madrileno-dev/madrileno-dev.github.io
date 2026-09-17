@@ -4,13 +4,17 @@ const entry = await getEntry("site", "manifesto");
 if (!entry) throw new Error("src/content/site/manifesto.md is missing");
 const { Content } = await render(entry);
 ---
-<article class="m-container prose">
-  <p class="m-eyebrow">Manifesto</p>
-  <h1>{entry.data.title}</h1>
-  <Content />
-</article>
+<section class="m-section m-section--flush">
+  <div class="m-container">
+    <article class="prose">
+      <p class="m-eyebrow">Manifesto</p>
+      <h1>{entry.data.title}</h1>
+      <Content />
+    </article>
+  </div>
+</section>
 <style>
-  .prose { max-width: 42rem; padding-block: clamp(3rem, 8vw, 6rem); font-size: 1.1rem; line-height: 1.7; }
+  .prose { max-width: 42rem; font-size: 1.1rem; line-height: 1.7; }
   .prose :global(h1) { font-size: clamp(2rem, 5vw, 3rem); }
   .prose :global(h2) { margin-top: 2.5rem; }
 </style>
