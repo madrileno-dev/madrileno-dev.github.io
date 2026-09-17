@@ -4,6 +4,13 @@ import Reveal from "../components/Reveal.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import { links } from "../site.ts";
 import { flags } from "../flags.ts";
+const commands = [
+  `git clone ${links.repo}`,
+  "cd madrileno",
+  "./scripts/init-project.scala my-project",
+  "docker compose up -d",
+  'sbt "~reStart"',
+];
 const description =
   "madrileño is an AI-first Scala 3 backend template: wired for coding assistants, with auth, scheduled jobs, an outbox and feature flags already in place. One script makes it your project.";
 ---
@@ -20,11 +27,9 @@ const description =
         </div>
       </div>
       <div class="hero__code">
-        <pre><code>git clone {links.repo}
-cd madrileno
-./scripts/init-project.scala my-project
-docker compose up -d
-sbt "~reStart"</code></pre>
+        <pre class="terminal"><code>{commands.map((c) => (
+          <span class="terminal__line"><span class="terminal__prompt" aria-hidden="true">$</span>{c}</span>
+        ))}</code></pre>
         <p class="m-muted">Five commands to a running API with migrations, tracing and a dev login.</p>
       </div>
     </div>
@@ -133,7 +138,9 @@ sbt "~reStart"</code></pre>
   .hero__grid { display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
   .hero__lede { font-size: 1.2rem; max-width: 36rem; }
   .hero__code { margin-top: 3rem; }
-  .hero__code pre { margin: 0 0 0.75rem; font-size: 0.8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .hero__code pre { margin: 0 0 0.75rem; font-size: 0.8rem; }
+  .terminal__line { display: block; white-space: pre-wrap; overflow-wrap: anywhere; text-indent: -1.25rem; padding-left: 1.25rem; }
+  .terminal__prompt { user-select: none; color: var(--m-accent); padding-right: 0.6rem; }
   .section-lede { max-width: 40rem; margin-bottom: 2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
   .principles { padding-left: 1.25rem; max-width: 46rem; margin: 0 0 1.5rem; }

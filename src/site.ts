@@ -7,13 +7,13 @@ export const links = {
   iterators: "https://www.iteratorshq.com/",
 };
 
-export type NavLink = { label: string; href: string; external?: boolean };
+export type NavLink = { label: string; href: string; external?: boolean; icon?: "github" };
 
 export function navLinks(): NavLink[] {
   return [
     { label: "Docs", href: "/docs/getting-started/" },
     ...(flags.manifesto ? [{ label: "Manifesto", href: "/manifesto/" }] : []),
     ...(flags.support ? [{ label: "Support", href: "/support/" }] : []),
-    { label: "GitHub", href: links.repo, external: true },
+    { label: "GitHub", href: links.repo, external: true, icon: "github" },
   ];
 }

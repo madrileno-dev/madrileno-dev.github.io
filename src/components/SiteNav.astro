@@ -1,0 +1,30 @@
+---
+import { navLinks } from "../site.ts";
+import GithubMark from "./icons/GithubMark.astro";
+const items = navLinks();
+---
+<nav class="m-nav" aria-label="Site">
+  {items.map((l) =>
+    l.icon === "github" ? (
+      <a class="m-nav__external" href={l.href} rel="noopener">
+        <GithubMark size={16} />
+        <span>{l.label}</span>
+      </a>
+    ) : (
+      <a href={l.href}>{l.label}</a>
+    ),
+  )}
+</nav>
+<style>
+  .m-nav { display: flex; align-items: center; gap: 1.25rem; line-height: 1.75; }
+  .m-nav a { color: var(--m-ink); text-decoration: none; font-weight: 500; }
+  .m-nav a:hover { color: var(--m-accent); }
+  .m-nav a:focus-visible { outline: 2px solid var(--m-accent); outline-offset: 3px; border-radius: 2px; }
+  .m-nav__external { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--m-ink-muted); font-weight: 400; }
+  .m-nav__external svg { opacity: 0.8; }
+  .m-nav__external:hover svg { opacity: 1; }
+  @media (max-width: 40rem) {
+    .m-nav { gap: 0.9rem; font-size: 0.95rem; }
+    .m-nav__external span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  }
+</style>

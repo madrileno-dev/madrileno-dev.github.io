@@ -1,15 +1,12 @@
 ---
-import { navLinks } from "../site.ts";
 import BrandLogo from "./BrandLogo.astro";
+import SiteNav from "./SiteNav.astro";
 import ThemeToggle from "./ThemeToggle.astro";
-const items = navLinks();
 ---
 <header class="m-header">
   <a class="m-header__brand" href="/" aria-label="madrileño home"><BrandLogo height={32} /></a>
   <div class="m-header__right">
-    <nav aria-label="Site" class="m-header__nav">
-      {items.map((l) => <a href={l.href} rel={l.external ? "noopener" : undefined}>{l.label}</a>)}
-    </nav>
+    <SiteNav />
     <span class="m-header__divider" aria-hidden="true"></span>
     <ThemeToggle />
   </div>
@@ -18,10 +15,7 @@ const items = navLinks();
   .m-header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 3.5rem; padding-inline: 1rem; background: var(--m-bg); border-bottom: 1px solid var(--m-line); }
   .m-header__brand { display: inline-flex; text-decoration: none; }
   .m-header__right { display: flex; align-items: center; gap: 1rem; }
-  .m-header__nav { display: flex; align-items: center; gap: 1.25rem; }
-  .m-header__nav a { color: var(--m-ink); text-decoration: none; font-weight: 500; line-height: 1.75; }
-  .m-header__nav a:hover { color: var(--m-accent); }
   .m-header__divider { height: 2rem; border-inline-end: 1px solid var(--m-line-strong); }
   @media (min-width: 50rem) { .m-header { height: 4rem; padding-inline: 1.5rem; } }
-  @media (max-width: 40rem) { .m-header__nav { gap: 0.9rem; font-size: 0.95rem; } .m-header__divider { display: none; } .m-header__right { gap: 0.75rem; } }
+  @media (max-width: 40rem) { .m-header__divider { display: none; } .m-header__right { gap: 0.75rem; } }
 </style>
