@@ -2,6 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Reveal from "../components/Reveal.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
+import IteratorsLogo from "../components/icons/IteratorsLogo.astro";
 import { links } from "../site.ts";
 import { flags } from "../flags.ts";
 const commands = [
@@ -121,7 +122,8 @@ const description =
           <h2>Build on it with the team that wrote it.</h2>
         </Reveal>
         <Reveal>
-          <p>madrileño is built and maintained by <a href={links.iterators} rel="noopener">Iterators</a>. We start teams on the template, build products on it, and stay on call once they ship.</p>
+          <p class="support-by"><a href={links.iterators} rel="noopener" aria-label="Iterators"><IteratorsLogo height={24} /></a></p>
+          <p>madrileño is built and maintained by Iterators, a software consulting company. We start teams on the template, build products on it, and stay on call once they ship.</p>
           <p class="m-muted">Kickoff, full build, architecture review, ongoing support.</p>
           <div class="m-actions">
             <a class="m-button m-button--primary" href="/support/">How we help</a>
@@ -143,6 +145,9 @@ const description =
   .terminal__prompt { user-select: none; color: var(--m-accent); padding-right: 0.6rem; }
   .section-lede { max-width: 40rem; margin-bottom: 2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
+  .support-by { margin-bottom: 1rem; }
+  .support-by a { display: inline-flex; color: var(--m-ink); }
+  .support-by svg { display: block; }
   .principles { padding-left: 1.25rem; max-width: 46rem; margin: 0 0 1.5rem; }
   .principles li { margin-bottom: 0.75rem; }
   @media (max-width: 48rem) {

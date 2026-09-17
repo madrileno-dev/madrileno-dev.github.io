@@ -1,5 +1,6 @@
 ---
 import Reveal from "../Reveal.astro";
+import IteratorsLogo from "../icons/IteratorsLogo.astro";
 import { links } from "../../site.ts";
 
 
@@ -15,7 +16,7 @@ const offers = [
   <div class="m-container">
     <Reveal class="support-hero">
       <p class="m-eyebrow">Paid support and consulting</p>
-      <p class="by"><span class="m-muted">by</span> <a href={links.iterators} rel="noopener">Iterators</a></p>
+      <p class="by"><span class="m-muted">by</span> <a href={links.iterators} rel="noopener" aria-label="Iterators"><IteratorsLogo height={26} /></a></p>
       <h1>Build on madrileño with the team that wrote it.</h1>
       <p class="lede">Iterators is a software consulting company. We have spent thirteen years building products for founders and product teams, and madrileño is part of what we learned, written down as code. If you are starting on it, we get you further than the docs alone can.</p>
       <a class="m-button m-button--primary" href={links.iteratorsContact} rel="noopener">Schedule a call</a>
@@ -79,7 +80,9 @@ const offers = [
 </section>
 <style>
   .support-hero { max-width: 46rem; padding-top: clamp(2rem, 6vw, 4rem); }
-  .by { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; font-family: var(--m-font-display); font-weight: 600; }
+  .by { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .by a { display: inline-flex; color: var(--m-ink); }
+  .by svg { display: block; }
   .lede { font-size: 1.2rem; }
   .two-col { display: grid; gap: 2rem 4rem; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; }
   @media (max-width: 48rem) { .two-col { grid-template-columns: 1fr; } }
