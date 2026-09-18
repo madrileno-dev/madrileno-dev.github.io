@@ -9,9 +9,10 @@ import { flags } from "../flags.ts";
 const commands = [
   `git clone ${links.repo}`,
   "cd madrileno",
+  "./scripts/init-project.scala myapp",
   "cp .env.sample .env",
   "docker compose up -d",
-  'sbt "runMain madrileno.main.MigrateMain"',
+  'sbt "runMain myapp.main.MigrateMain"',
   'sbt "~reStart"',
 ];
 const description =
