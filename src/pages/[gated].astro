@@ -6,7 +6,7 @@ import { flags } from "../flags.ts";
 
 export function getStaticPaths() {
   return [
-    ...(flags.manifesto ? [{ params: { gated: "manifesto" } }] : []),
+    { params: { gated: "manifesto" } },
     ...(flags.support ? [{ params: { gated: "support" } }] : []),
   ];
 }

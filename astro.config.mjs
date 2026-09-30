@@ -32,7 +32,7 @@ export default defineConfig({
       expressiveCode: {
         shiki: { langAlias: { hocon: "properties" } },
       },
-      plugins: [starlightLinksValidator({ errorOnLocalLinks: false })],
+      plugins: [starlightLinksValidator({ errorOnLocalLinks: false, exclude: ["/support/"] })],
     }),
   ],
 });

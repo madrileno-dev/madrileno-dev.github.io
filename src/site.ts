@@ -13,7 +13,7 @@ export type NavLink = { label: string; href: string; external?: boolean; icon?: 
 export function navLinks(): NavLink[] {
   return [
     { label: "Docs", href: "/docs/getting-started/" },
-    ...(flags.manifesto ? [{ label: "Manifesto", href: "/manifesto/" }] : []),
+    { label: "Manifesto", href: "/manifesto/" },
     ...(flags.support ? [{ label: "Support", href: "/support/" }] : []),
     { label: "GitHub", href: links.repo, external: true, icon: "github" },
   ];
