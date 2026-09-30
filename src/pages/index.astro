@@ -109,10 +109,13 @@ const description =
 
   <section class="m-section" id="frontend">
     <div class="m-container two-col">
-      <Reveal><p class="m-eyebrow">Companion frontend</p><h2>Backend drift is a compile error.</h2></Reveal>
+      <Reveal><p class="m-eyebrow">Companion apps</p><h2>Backend drift is a compile error.</h2></Reveal>
       <Reveal>
-        <p>A small React 19 and TypeScript app built against the oRPC contract generated from these routes. Rename a field on the backend and the frontend fails to build at the call site.</p>
-        <a class="m-button" href={links.frontendRepo} rel="noopener"><GithubMark size={18} />madrileno-frontend</a>
+        <p>A React 19 web app and a React Native mobile app, both built against the oRPC contract generated from these routes. Rename a field on the backend and both fail to build at the call site.</p>
+        <div class="m-actions">
+          <a class="m-button" href={links.frontendRepo} rel="noopener"><GithubMark size={18} />madrileno-frontend</a>
+          <a class="m-button" href={links.mobileRepo} rel="noopener"><GithubMark size={18} />madrileno-mobile</a>
+        </div>
       </Reveal>
     </div>
   </section>
