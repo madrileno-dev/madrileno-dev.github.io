@@ -1,5 +1,3 @@
-import { flags } from "./flags.ts";
-
 export const links = {
   repo: "https://github.com/madrileno-dev/madrileno",
   frontendRepo: "https://github.com/madrileno-dev/madrileno-frontend",
@@ -14,7 +12,7 @@ export function navLinks(): NavLink[] {
   return [
     { label: "Docs", href: "/docs/getting-started/" },
     { label: "Manifesto", href: "/manifesto/" },
-    ...(flags.support ? [{ label: "Support", href: "/support/" }] : []),
+    { label: "Support", href: "/support/" },
     { label: "GitHub", href: links.repo, external: true, icon: "github" },
   ];
 }

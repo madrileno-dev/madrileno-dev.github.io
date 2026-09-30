@@ -5,7 +5,6 @@ import FeatureGrid from "../components/FeatureGrid.astro";
 import IteratorsLogo from "../components/icons/IteratorsLogo.astro";
 import GithubMark from "../components/icons/GithubMark.astro";
 import { links } from "../site.ts";
-import { flags } from "../flags.ts";
 const commands = [
   `git clone ${links.repo}`,
   "cd madrileno",
@@ -115,25 +114,23 @@ const description =
     </div>
   </section>
 
-  {flags.support && (
-    <section class="m-section" id="support">
-      <div class="m-container two-col">
-        <Reveal>
-          <p class="m-eyebrow">Paid support</p>
-          <h2>Build on it with the team that wrote it.</h2>
-        </Reveal>
-        <Reveal>
-          <p class="support-by"><a href={links.iterators} rel="noopener" aria-label="Iterators"><IteratorsLogo height={24} /></a></p>
-          <p>madrileño is built and maintained by Iterators, a software consulting company. We start teams on the template, build products on it, and stay on call once they ship.</p>
-          <p class="m-muted">Kickoff, full build, architecture review, ongoing support.</p>
-          <div class="m-actions">
-            <a class="m-button m-button--primary" href="/support/">How we help</a>
-            <a class="m-button" href={links.iteratorsContact} rel="noopener">Schedule a call</a>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )}
+  <section class="m-section" id="support">
+    <div class="m-container two-col">
+      <Reveal>
+        <p class="m-eyebrow">Paid support</p>
+        <h2>Build on it with the team that wrote it.</h2>
+      </Reveal>
+      <Reveal>
+        <p class="support-by"><a href={links.iterators} rel="noopener" aria-label="Iterators"><IteratorsLogo height={24} /></a></p>
+        <p>madrileño is built and maintained by Iterators, a software consulting company. We start teams on the template, build products on it, and stay on call once they ship.</p>
+        <p class="m-muted">Kickoff, full build, architecture review, ongoing support.</p>
+        <div class="m-actions">
+          <a class="m-button m-button--primary" href="/support/">How we help</a>
+          <a class="m-button" href={links.iteratorsContact} rel="noopener">Schedule a call</a>
+        </div>
+      </Reveal>
+    </div>
+  </section>
 </SiteLayout>
 
 <style>
