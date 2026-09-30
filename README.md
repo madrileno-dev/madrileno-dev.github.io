@@ -11,7 +11,7 @@ Docs are not stored here. `pnpm sync` reads them from a checkout of `madrileno-d
     pnpm sync --madrileno ../madrileno --brand ../madrileno-dot-github --ref main
     pnpm dev
 
-`.env.example` lists the optional flags. Search only works in `pnpm build && pnpm preview`.
+`.env.example` lists the optional settings. Search only works in `pnpm build && pnpm preview`.
 
 Feature icons on the landing page are from [Lucide](https://lucide.dev) (ISC).
 

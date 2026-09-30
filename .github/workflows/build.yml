@@ -30,5 +30,3 @@ jobs:
       - run: pnpm build
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-          PUBLISH_MANIFESTO: ${{ vars.PUBLISH_MANIFESTO }}
-          PUBLISH_SUPPORT: ${{ vars.PUBLISH_SUPPORT }}

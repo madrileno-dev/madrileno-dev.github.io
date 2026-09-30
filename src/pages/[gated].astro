@@ -2,12 +2,11 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Manifesto from "../components/pages/Manifesto.astro";
 import Support from "../components/pages/Support.astro";
-import { flags } from "../flags.ts";
 
 export function getStaticPaths() {
   return [
-    ...(flags.manifesto ? [{ params: { gated: "manifesto" } }] : []),
-    ...(flags.support ? [{ params: { gated: "support" } }] : []),
+    { params: { gated: "manifesto" } },
+    { params: { gated: "support" } },
   ];
 }
 const { gated } = Astro.params;
