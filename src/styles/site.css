@@ -17,7 +17,7 @@ pre { background: var(--m-bg-raised); border: 1px solid var(--m-line); border-ra
 .m-container { width: min(72rem, 100% - 2.5rem); margin-inline: auto; }
 .m-section { padding-block: clamp(3rem, 8vw, 6rem); border-top: 1px solid var(--m-line); }
 .m-section--flush { border-top: 0; }
-.m-eyebrow { color: var(--m-accent); font-family: var(--m-font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; margin-bottom: 0.75rem; }
+.m-eyebrow { color: var(--m-accent); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
 .m-muted { color: var(--m-ink-muted); }
 .m-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
 .m-card { display: block; padding: 1.25rem; border: 1px solid var(--m-line); border-radius: 10px; background: var(--m-bg-raised); color: inherit; text-decoration: none; transition: border-color 150ms, transform 150ms; }

@@ -10,10 +10,10 @@
   --sl-color-gray-1: #2a2a31;
   --sl-color-gray-2: #45454d;
   --sl-color-gray-3: #6b6a72;
-  --sl-color-gray-4: #9b988f;
-  --sl-color-gray-5: #cfc9be;
-  --sl-color-gray-6: #ebe6dd;
-  --sl-color-gray-7: #f5f1ea;
+  --sl-color-gray-4: #9a9aa2;
+  --sl-color-gray-5: #d0d0d6;
+  --sl-color-gray-6: #ececef;
+  --sl-color-gray-7: #f7f7f8;
   --sl-color-black: var(--m-bg);
 }
 :root[data-theme="dark"] {
