@@ -3,6 +3,7 @@ import { flags } from "./flags.ts";
 export const links = {
   repo: "https://github.com/madrileno-dev/madrileno",
   frontendRepo: "https://github.com/madrileno-dev/madrileno-frontend",
+  mobileRepo: "https://github.com/madrileno-dev/madrileno-mobile",
   org: "https://github.com/madrileno-dev",
   iterators: "https://www.iteratorshq.com/",
   iteratorsContact: "https://www.iteratorshq.com/contact/",
